@@ -4,7 +4,6 @@ package demo01
 */
 
 import (
-	"arena-serve/k8s"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/websocket"
@@ -103,7 +102,7 @@ func wsHandler(resp http.ResponseWriter, req *http.Request) {
 	podNs = req.Form.Get("podNs")
 	podName = req.Form.Get("podName")
 	containerName = req.Form.Get("containerName")
-	if clientset, err = k8s.InitClient(); err != nil {
+	if clientset, err = InitClient(); err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -116,7 +115,7 @@ func wsHandler(resp http.ResponseWriter, req *http.Request) {
 	// 获取pods
 
 	// 获取k8s rest client配置
-	if restConf, err = k8s.GetRestConf(); err != nil {
+	if restConf, err = GetRestConf(); err != nil {
 		goto END
 	}
 
